@@ -1,314 +1,76 @@
 {% extends 'index.html' %}
 {% block content %}
 	<!-- Pie charts -->
-	{{ user.username }}
-	<!-- Charts -->
+
+  <!-- Charts -->
+  <div class="container mt-5">
+          <div class="row">
+            <div class="col-xl-4">
+              <div class="media widget-media p-4 bg-white border">
+                <div class="icon rounded-circle mr-4 bg-primary">
+                  <i class="mdi mdi-account-outline text-white "></i>
+                </div>
+                <div class="media-body align-self-center">
+                  <h4 class="text-primary mb-2">5300</h4>
+                  <p>New Users</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4">
+              <div class="media widget-media p-4 bg-white border">
+                <div class="icon rounded-circle bg-warning mr-4">
+                  <i class="mdi mdi-cart-outline text-white "></i>
+                </div>
+                <div class="media-body align-self-center">
+                  <h4 class="text-primary mb-2">1953</h4>
+                  <p>Order Placed</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4">
+              <div class="media widget-media p-4 bg-white border">
+                <div class="icon rounded-circle mr-4 bg-danger">
+                  <i class="mdi mdi-cart-outline text-white "></i>
+                </div>
+                <div class="media-body align-self-center">
+                  <h4 class="text-primary mb-2">1450</h4>
+                  <p>Total Sales</p>
+                </div>
+              </div>
+            </div>
+          </div>
 	    <div class="row bg-white no-gutters chat">
       <div class="col-lg-4">
         <!-- Chat Left Side -->
         <div class="chat-left-side">
 
           <form class="chat-search">
-            <input type="text" class="form-control" placeholder="Search...">
+            <input type="text" class="form-control" placeholder="Search..." name="q">
           </form>
 
           <ul class="list-unstyled border-top mb-0" id="chat-left-content">
-            <li>
-              <a href="#" class="media media-message">
-                <div class="position-relative mr-3">
-                  <img class="rounded-circle" src="assets/img/user/u1.jpg" alt="Image">
-                  <span class="status away"></span>
-                </div>
-                <div class="media-body d-flex justify-content-between">
-                  <div class="message-contents">
-                    <h4 class="title">Aaren</h4>
-                    <p class="last-msg">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam itaque doloremque
-                      odio,
-                      eligendi delectus vitae.</p>
+            {% for message in messages %}
+              <li class="chart-list">
+                <a href="#" class="media media-message">
+                  <div class="position-relative mr-3">
+                    <img class="rounded-circle" src="/media/{{message.reciever.profile.profile_picture}}" alt="Image" height="50">
+                    <span class="status away"></span>
                   </div>
+                  <div class="media-body d-flex justify-content-between">
+                    <div class="message-contents">
+                      <h4 class="title">{{ message.reciever.username }}</h4>
+                      <p class="last-msg">
+                        {{ message.message }}
+                      </p>
+                    </div>
 
-                  <span class="date">12 Jun</span>
+                    <span class="date">{{ message.created_on |date:"D M Y"}}</span>
 
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="media media-message media-active">
-                <div class="position-relative mr-3">
-                  <img class="rounded-circle" src="assets/img/user/u2.jpg" alt="Image">
-                  <span class="status active"></span>
-                </div>
-                <div class="media-body d-flex justify-content-between">
-                  <div class="message-contents">
-                    <h4 class="title">Leon Battista</h4>
-                    <p class="last-msg">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam itaque doloremque
-                      odio,
-                      eligendi delectus vitae.</p>
                   </div>
-
-                  <span class="date">25 July</span>
-
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="media media-message">
-                <div class="position-relative mr-3">
-                  <img class="rounded-circle" src="assets/img/user/u3.jpg" alt="Image">
-                  <span class="status away"></span>
-                </div>
-                <div class="media-body d-flex justify-content-between">
-                  <div class="message-contents">
-                    <h4 class="title">Abriel</h4>
-                    <p class="last-msg">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam itaque doloremque
-                      odio,
-                      eligendi delectus vitae.</p>
-                  </div>
-
-                  <span class="date">09 Feb</span>
-
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="media media-message">
-                <div class="position-relative mr-3">
-                  <img class="rounded-circle" src="assets/img/user/u4.jpg" alt="Image">
-                  <span class="status active"></span>
-                </div>
-
-                <div class="media-body d-flex justify-content-between">
-                  <div class="message-contents">
-                    <h4 class="title">Emma</h4>
-                    <p class="last-msg">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam itaque doloremque
-                      odio,
-                      eligendi delectus vitae.</p>
-                  </div>
-
-                  <span class="date">05 Jan</span>
-
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="media media-message">
-                <div class="position-relative mr-3">
-                  <img class="rounded-circle" src="assets/img/user/u5.jpg" alt="Image">
-                  <span class="status away"></span>
-                </div>
-
-                <div class="media-body d-flex justify-content-between">
-                  <div class="message-contents">
-                    <h4 class="title">Emily</h4>
-                    <p class="last-msg">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam itaque doloremque
-                      odio,
-                      eligendi delectus vitae.</p>
-                  </div>
-
-                  <span class="date">17 Mar</span>
-
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="media media-message">
-                <div class="position-relative mr-3">
-                  <img class="rounded-circle" src="assets/img/user/u6.jpg" alt="Image">
-                  <span class="status"></span>
-                </div>
-
-                <div class="media-body d-flex justify-content-between">
-                  <div class="message-contents">
-                    <h4 class="title">William</h4>
-                    <p class="last-msg">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam itaque doloremque
-                      odio,
-                      eligendi delectus vitae.</p>
-                  </div>
-
-                  <span class="date">27 May</span>
-
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="media media-message">
-                <div class="position-relative mr-3">
-                  <img class="rounded-circle" src="assets/img/user/u7.jpg" alt="Image">
-                  <span class="status away"></span>
-                </div>
-
-                <div class="media-body d-flex justify-content-between">
-                  <div class="message-contents">
-                    <h4 class="title">Sophia</h4>
-                    <p class="last-msg">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam itaque doloremque
-                      odio,
-                      eligendi delectus vitae.</p>
-                  </div>
-
-                  <span class="date">20 Jun</span>
-
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="media media-message">
-                <div class="position-relative mr-3">
-                  <img class="rounded-circle" src="assets/img/user/u8.jpg" alt="Image">
-                  <span class="status"></span>
-                </div>
-
-                <div class="media-body d-flex justify-content-between">
-                  <div class="message-contents">
-                    <h4 class="title">Sophia</h4>
-                    <p class="last-msg">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam itaque doloremque
-                      odio,
-                      eligendi delectus vitae.</p>
-                  </div>
-
-                  <span class="date">20 Jun</span>
-
-                </div>
-              </a>
-            </li>
-
-            <li>
-              <a href="#" class="media media-message">
-                <div class="position-relative mr-3">
-                  <img class="rounded-circle" src="assets/img/user/u1.jpg" alt="Image">
-                  <span class="status away"></span>
-                </div>
-                <div class="media-body d-flex justify-content-between">
-                  <div class="message-contents">
-                    <h4 class="title">Aaren</h4>
-                    <p class="last-msg">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam itaque doloremque
-                      odio,
-                      eligendi delectus vitae.</p>
-                  </div>
-
-                  <span class="date">12 Jun</span>
-
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="media media-message">
-                <div class="position-relative mr-3">
-                  <img class="rounded-circle" src="assets/img/user/u2.jpg" alt="Image">
-                  <span class="status"></span>
-                </div>
-                <div class="media-body d-flex justify-content-between">
-                  <div class="message-contents">
-                    <h4 class="title">Abby</h4>
-                    <p class="last-msg">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam itaque doloremque
-                      odio,
-                      eligendi delectus vitae.</p>
-                  </div>
-
-                  <span class="date">25 July</span>
-
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="media media-message">
-                <div class="position-relative mr-3">
-                  <img class="rounded-circle" src="assets/img/user/u3.jpg" alt="Image">
-                  <span class="status away"></span>
-                </div>
-                <div class="media-body d-flex justify-content-between">
-                  <div class="message-contents">
-                    <h4 class="title">Abriel</h4>
-                    <p class="last-msg">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam itaque doloremque
-                      odio,
-                      eligendi delectus vitae.</p>
-                  </div>
-
-                  <span class="date">09 Feb</span>
-
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="media media-message">
-                <div class="position-relative mr-3">
-                  <img class="rounded-circle" src="assets/img/user/u4.jpg" alt="Image">
-                  <span class="status active"></span>
-                </div>
-
-                <div class="media-body d-flex justify-content-between">
-                  <div class="message-contents">
-                    <h4 class="title">Emma</h4>
-                    <p class="last-msg">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam itaque doloremque
-                      odio,
-                      eligendi delectus vitae.</p>
-                  </div>
-
-                  <span class="date">05 Jan</span>
-
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="media media-message">
-                <div class="position-relative mr-3">
-                  <img class="rounded-circle" src="assets/img/user/u5.jpg" alt="Image">
-                  <span class="status"></span>
-                </div>
-
-                <div class="media-body d-flex justify-content-between">
-                  <div class="message-contents">
-                    <h4 class="title">Emily</h4>
-                    <p class="last-msg">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam itaque doloremque
-                      odio,
-                      eligendi delectus vitae.</p>
-                  </div>
-
-                  <span class="date">17 Mar</span>
-
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="media media-message">
-                <div class="position-relative mr-3">
-                  <img class="rounded-circle" src="assets/img/user/u6.jpg" alt="Image">
-                  <span class="status away"></span>
-                </div>
-
-                <div class="media-body d-flex justify-content-between">
-                  <div class="message-contents">
-                    <h4 class="title">William</h4>
-                    <p class="last-msg">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam itaque doloremque
-                      odio,
-                      eligendi delectus vitae.</p>
-                  </div>
-
-                  <span class="date">27 May</span>
-
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="media media-message">
-                <div class="position-relative mr-3">
-                  <img class="rounded-circle" src="assets/img/user/u7.jpg" alt="Image">
-                  <span class="status"></span>
-                </div>
-
-                <div class="media-body d-flex justify-content-between">
-                  <div class="message-contents">
-                    <h4 class="title">Sophia</h4>
-                    <p class="last-msg">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam itaque doloremque
-                      odio,
-                      eligendi delectus vitae.</p>
-                  </div>
-
-                  <span class="date">20 Jun</span>
-
-                </div>
-              </a>
-            </li>
-
+                </a>
+              </li>
+            {% endfor %}
+            
           </ul>
         </div>
 
@@ -317,10 +79,10 @@
         <!-- Chats -->
         <div class="chat-right-side">
           <div class="media media-chat align-items-center mb-0 media-chat-header" href="#">
-            <img class="rounded-circle mr-3" src="assets/img/user/u2.jpg" alt="Image">
+            <!-- <img class="rounded-circle mr-3" src="assets/img/user/u2.jpg" alt="Image"> -->
             <div class="media-body w-100">
               <div class="d-flex justify-content-between align-items-center">
-                <h3 class="heading-title mb-0"><a href="#">Leon Battista</a></h3>
+                <h3 class="heading-title mb-0"><a href="#">daudi</a></h3>
                 <div class="dropdown">
                   <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
@@ -335,72 +97,42 @@
           </div>
 
           <div class="chat-right-content" id="chat-right-content">
-            <div class="media media-chat media-left">
-              <img class="rounded-circle mr-3" src="assets/img/user/u2.jpg" alt="Image">
-              <div class="media-body">
-                <p class="message">Lorem ipsum dolor sit amet.</p>
-                <div class="date-time">27-07-2019, 1.03 PM</div>
+            {% for message in conversation %}
+              {% if message.sender != user %}
+              <div class="media media-chat media-left">
+                <img class="rounded-circle mr-3" src="/media/{{message.reciever.profile.profile_picture}}" alt="Image" height="50">
+                <div class="media-body">
+                  <p class="message">{{ message.message }}</p>
+                  <div class="date-time">{{ message.created_on |date:"D M Y"}}</div>
+                </div>
               </div>
-            </div>
 
-            <div class="media media-chat media-right">
-              <div class="media-body">
-                <p class="message">Consectetur adipisicing elit Odio ex.</p>
-                <div class="date-time">27-07-2019, 1.03 PM</div>
+              {% else %}
+              <div class="media media-chat media-right">
+                <div class="media-body">
+                  <p class="message">{{ message.message }}</p>
+                  <div class="date-time">{{ message.created_on |date:"D M Y"}}</div>
+                </div>
+                <img class="rounded-circle ml-3" src="/media/{{message.reciever.profile.profile_picture}}" alt="Image" height="50">
               </div>
-              <img class="rounded-circle ml-3" src="assets/img/user/u4.jpg" alt="Image">
-            </div>
+              {% endif %}
+            {% endfor %}
 
-            <div class="media media-chat media-left">
-              <img class="rounded-circle mr-3" src="assets/img/user/u2.jpg" alt="Image">
-              <div class="media-body">
-                <p class="message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto dolor, exercitationem
-                  earum natus doloremque explicabo.</p>
-                <p class="message">Accusamus laborum explicabo illum asperiores provident dolore perferendis cumque
-                  incidunt possimus quia! Deleniti minus</p>
-                <div class="date-time">27-07-2019, 1.03 PM</div>
-              </div>
-            </div>
-
-            <div class="media media-chat media-right">
-              <div class="media-body">
-                <p class="message">Lorem ipsum dolor sit amet.</p>
-                <div class="date-time">27-07-2019, 1.03 PM</div>
-              </div>
-              <img class="rounded-circle ml-3" src="assets/img/user/u4.jpg" alt="Image">
-            </div>
-
-            <div class="media media-chat media-left">
-              <img class="rounded-circle mr-3" src="assets/img/user/u2.jpg" alt="Image">
-              <div class="media-body">
-                <p class="message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto dolor, exercitationem
-                  earum natus
-                  doloremque explicabo.</p>
-                <p class="message">Accusamus laborum explicabo illum asperiores provident dolore perferendis cumque
-                  incidunt
-                  possimus quia! Deleniti minus</p>
-                <div class="date-time">27-07-2019, 1.03 PM</div>
-              </div>
-            </div>
-
-            <div class="media media-chat media-right">
-              <div class="media-body">
-                <p class="message">Lorem ipsum dolor sit amet.</p>
-                <div class="date-time">27-07-2019, 1.03 PM</div>
-              </div>
-              <img class="rounded-circle ml-3" src="assets/img/user/u4.jpg" alt="Image">
-            </div>
+            
 
           </div>
 
-          <form class="px-5 pb-3">
-            <input type="text" class="form-control mb-3" placeholder="Type your message here">
+          <form class="px-5 pb-3" class="message-form">
+            <input type="text" class="form-control mb-3" placeholder="Type your message here" name=message>
           </form>
         </div>
 
       </div>
     </div>
+  </div>
 {% endblock %}
 {% block javascript %}
 <!-- load and update charts layout -->
+
+
 {% endblock %}

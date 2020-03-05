@@ -74,7 +74,7 @@
                       <a href="{% url 'dashboard' %}" class="nav-link">Dashboard</a>
                   </li>
                   <li class="nav-item">
-                      <a href="#" class="nav-link">Orders</a>
+                      <a href="{% url 'order-list' %}" class="nav-link">Orders</a>
                   </li>
                   <li class="nav-item">
                       <a href="#" class="nav-link">Analytics</a>
@@ -83,7 +83,10 @@
                       <a href="#" class="nav-link">Earnings</a>
                   </li>
                   <li class="nav-item">
-                      <a href="#" class="nav-link">Community</a>
+                      <a href="{% url 'project-list' %}" class="nav-link">Projects</a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="{% url 'community' %}" class="nav-link">Community</a>
                   </li>
                 </ul>
               </div>
@@ -97,43 +100,27 @@
                       <i class="mdi mdi-bell-outline"></i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
+                      {% if message %}
                       <li class="dropdown-header">You have 5 notifications</li>
+                      {% for message in messages %}
                       <li>
                         <a href="#">
-                          <i class="mdi mdi-account-plus"></i> New user registered
-                          <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 10 AM</span>
+                          <i class="mdi mdi-account-plus"></i> {{ message.message }}
+                          <span class=" font-size-12 d-inline-block float-right">
+                            <i class="mdi mdi-clock-outline"></i>
+                            {{ message.creat_on|date:"D M Y"}}
+                          </span>
                         </a>
                       </li>
-                      <li>
-                        <a href="#">
-                          <i class="mdi mdi-account-remove"></i> User deleted
-                          <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 07 AM</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i class="mdi mdi-chart-areaspline"></i> Sales report is ready
-                          <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 12 PM</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i class="mdi mdi-account-supervisor"></i> New client
-                          <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 10 AM</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i class="mdi mdi-server-network-off"></i> Server overloaded
-                          <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 05 AM</span>
-                        </a>
-                      </li>
+                      {% endfor %}
+                      {% endif %}
                       <li class="dropdown-footer">
-                        <a class="text-center" href="#"> View All </a>
+                        <a class="text-center" href="{% url 'dashboard' %}"> View All </a>
                       </li>
                     </ul>
                   </li>
-                  {% if user.is_authenticated %}
+                  
+                  {% if user and user.is_authenticated %}
                  
                   <!-- User Account -->
                   <li class="dropdown user-menu">
@@ -156,15 +143,12 @@
                         </a>
                       </li>
                       <li>
-                        <a href="#">
+                        <a href="{% url 'dashboard' %}">
                           <i class="mdi mdi-email"></i> Message
                         </a>
                       </li>
                       <li>
-                        <a href="#"> <i class="mdi mdi-diamond-stone"></i> Projects </a>
-                      </li>
-                      <li class="right-sidebar-in">
-                        <a href="javascript:0"> <i class="mdi mdi-settings"></i> Setting </a>
+                        <a href="{% url 'project-list' %}"> <i class="mdi mdi-diamond-stone"></i> Projects </a>
                       </li>
 
                       <li class="dropdown-footer">
@@ -191,8 +175,8 @@
   {% endblock %}
 </div>
 
-<footer class="footer mt-auto  bg-white">
-  <div class="container-fluid my-5 pt-5">
+<footer class="footer mt-auto  bg-white mt-5">
+  <div class="container my-5 pt-5">
     <div class="row">
       <div class="col-md-3">
          <h5 class="my-1">Categories</h5>
@@ -284,4 +268,7 @@
 <script src="{% static 'assets/plugins/toastr/toastr.min.js' %}"></script>
 <script src="{% static 'assets/plugins/toastr/toastr.min.js' %}"></script>
 <script src="{% static 'assets/js/sleek.bundle.min.js' %}"></script>
+{% block javascript %}
+<!-- load and update charts layout -->
+{% endblock %}
 </html>

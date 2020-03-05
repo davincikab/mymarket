@@ -1,0 +1,75 @@
+{% extends 'index.html' %}
+{% block content %}
+<div class="container mt-2">
+    <div class="card card-table-border-none" id="recent-orders">
+        <div class="card-header justify-content-between">
+            <h2>{{ order.project.title}}</h2>
+            <!-- <div class="date-range-report ">
+                <span></span>
+            </div> -->
+        </div>
+
+        <div class="row mx-2 card-body">
+            <div class="col-md-6">
+                <h4>Project Details</h4>
+                <h1 class="my-2">
+                    <span class="badge  badge-success">{{ order.project.timeframe }} Days</span>
+                </h1>
+
+                <p>Owner : {{order.project.created_by.first_name }} {{order.project.created_by.last_name }}</p>
+                <p>Created on: {{order.project.created_at }}</p>
+
+                <p class="mt-5 i">
+                    <h5>Description</h5>
+                    <p class="text-italic">
+                        {{order.project.description}}
+                    </p>
+                    
+                </p>
+                <p>
+                    {{ order.project.}}
+                </p>
+            </div>
+            <div class="col-md-6">
+                <h4>Order Details</h4>
+                
+
+                <h1 class="my-2">
+                    <span class="badge  badge-success h1">
+                        <small>COST</small>
+                        ${{order.cost}}
+                    </span>
+
+                </h1>
+                <p class="h4 my-2"> {{order.pk}}</p>
+
+                {% if order.isclosed %}
+                    <span class="badge  badge-success">Closed</span>
+                {% else %}
+                    <span class="badge  badge-danger">Open</span>
+                {% endif %}
+
+                {% if order.isdone %}
+                    <span class="badge  badge-success">Work done</span>
+                {% else %}
+                    <span class="badge  badge-danger">Work Not Done</span>
+                {% endif %}
+
+                {% if order.iscompleted %}
+                    <span class="badge  badge-success">Completed</span>
+                {% else %}
+                    <span class="badge  badge-danger">Pending</span>
+                {% endif %}
+
+                <div class="mt-5">
+                    {{ form.render }}
+                </div>
+            </div>
+        </div>
+    <td>
+        <a class="text-dark" href=""> </a>
+    </td>
+</div>
+</div>
+
+{% endblock %}

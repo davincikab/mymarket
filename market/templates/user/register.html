@@ -2,6 +2,16 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+<style>
+  p, ul li{
+    display: none;
+  }
+
+  #id_password1{
+    width: 100%;
+    border-radius:5px;
+  }
+</style>
 <div class="container d-flex flex-column justify-content-between vh-100">
           <div class="row justify-content-center mt-5">
             <div class="col-xl-5 col-lg-6 col-md-10">
@@ -30,9 +40,6 @@
                       		<div class="form-group">
                       			{{ field.errors }}
                       			{{ field|as_crispy_field }}
-                      			{% if field.help_text %}
-                      				<p>{{ field.help_text|safe }}}</p>
-                      			{% endif %}
                       		</div>
                       	{% endfor %}
                       </div>
@@ -60,4 +67,13 @@
           
         </div>
 
+{% endblock %}
+{% block javascript %}
+  <script>
+      var element = document.querySelectorAll('.textinput');
+      element.forEach(elm=>{
+        elm.classList.add('form-control');
+      });
+  </script>
+    
 {% endblock %}

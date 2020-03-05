@@ -5,7 +5,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('market.urls')),
     path('user/',include('user.urls')),
-    path('payment',include('payment.urls'))
+    path('payment/',include('payment.urls')),
+    path('paypal/', include('paypal.standard.ipn.urls')),
 ]
 
 # TODO:

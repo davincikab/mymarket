@@ -25,7 +25,10 @@ SECRET_KEY = '1x9p*@99qcf_6t*!kqo!!0y+690yd8&l&fjj#m*mysy^7p0ecp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '5a090bda.ngrok.io',
+    '127.0.0.1'
+]
 
 
 # Application definition
@@ -41,6 +44,7 @@ INSTALLED_APPS = [
     'user',
     'payment',
     'crispy_forms',
+    'paypal.standard.ipn'
 ]
 
 MIDDLEWARE = [
@@ -142,3 +146,5 @@ LOGIN_URL = "/user/login/"
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_UTL = "/user/login/"
 
+PAYPAL_TEST = True
+PERSONAL_RECIEVER_EMAIL = 'sb-kbmkf1066921@business.example.com'

@@ -1,0 +1,67 @@
+{% extends 'index.html' %}
+{% block content %}
+<style>
+    .floating-btn {
+        position: fixed;
+        right: 2%;
+        top: 15%;
+        z-index: 200;
+    }
+</style>
+<div class="container mt-5">
+    <!-- A card  -->
+    <div class="col-md-9">
+        <div class="card mb-5">
+            <div class="card-header bg-info text-white">
+                <div class="d-flex align-items-center justify-content-between">
+                    <p>
+                        {% if user.username == project.created_by.username %}
+                        <a href="{% url 'project-update' project.pk %}" class="btn btn-info mb-5 px-3 floating-btn"><i class="fa fa-"></i>Edit</a>
+                        <a href="{% url 'project-delete' project.pk %}" class="btn btn-danger mt-5 px-2 floating-btn"><i class="fa fa-trash"></i>Delete</a>
+                        {% endif %}
+                        
+                        {{ project.title }}
+                    </p>
+                </div>
+
+            </div>
+            <div class="card-body">
+
+                <div class="row">
+                    <p class="h5"> Project Information </p>
+
+                    <table class="table table-responsive my-2">
+                        <thead>
+                            <th>Username</th>
+                            <th>Full Name</th>
+                            <th>Project Duration</th>
+                            <th>Project Status</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="{% url 'profile' %}">{{ project.created_by.username }}</a></td>
+                                <td>{{ project.created_by.first_name}} {{project.created_by.last_name}}</td>
+                                <td>{{ project.timeframe }} days</td>
+                                <td>{{ project.awarded }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row mt-2">
+                    <h5 class="text-center">Projection Description </h5>
+                    <div class="p my-2">
+                        {{ project.description }}
+                    </div>
+                </div>
+               
+            
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+
+    </div>
+  
+</div>
+
+{% endblock %}

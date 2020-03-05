@@ -1,0 +1,75 @@
+{% extends 'index.html' %}
+{% block content %}
+    <!-- Current Work -->
+    <style>
+        .floating-btn {
+            position: fixed;
+            right: 2%;
+            top: 15%;
+            z-index: 200;
+        }
+    </style>
+    <div class="container mt-2">
+        <a href="{% url 'order-create'%}" class="btn btn-info floating-btn">
+            Add
+            <i class="fa fa-add fa-2x"></i>
+        </a>
+    <div class="card card-table-border-none" id="recent-orders">
+        <div class="card-header justify-content-between">
+            <h2>Recent Orders</h2>
+            <div class="date-range-report ">
+                <span></span>
+            </div>
+        </div>
+        <div class="card-body pt-0 pb-5">
+            <table class="table table-responsive table-responsive-large" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Order-title</th>
+                        <th class="d-none d-xl-table-cell">Order Date</th>
+                        <th class="d-none d-xl-table-cell">Order Cost</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <td>{{  order.project.truncate_title }}</td>
+                            <td>
+                                <a class="text-dark" href=""> {{order.project.created_by}}</a>
+                            </td>
+                            <td class="d-none d-xl-table-cell">{{ order.delivery_date }}</td>
+                            <td class="d-none d-xl-table-cell">{{ order.cost }}</td>
+                            <td>
+                                {% if order.isclosed %}
+                                    <span class="badge  badge-success">Completed</span>
+                                {% else %}
+                                    <span class="badge  badge-danger">Pending</span>
+                                {% endif %}
+                            </td>
+                            <td class="text-right">
+                                <div class="dropdown show d-inline-block widget-dropdown">
+                                    <a class="dropdown-toggle icon-burger-mini" href="" role="button"
+                                        id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false" data-display="static"></a>
+                                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order1">
+                                        <li class="dropdown-item">
+                                            <a href="{% url 'order-details' order.pk %}">View</a>
+                                        </li>
+                                        <li class="dropdown-item">
+                                            <a href="{% url 'order-delete' order.pk %}">Remove</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    </table>
+        </div>
+        </div>
+        </div>
+
+        
+{% endblock %}

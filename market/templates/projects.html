@@ -1,4 +1,57 @@
 {% extends 'index.html' %}
 {% block content %}
-	
+<style>
+    .floating-btn{
+       position: fixed;
+       right:2%;
+       top:15%; 
+       z-index: 200;
+    }
+</style>
+<div class="container mt-5">
+    <a href="{% url 'project-create'%}" class="btn btn-info floating-btn">
+        Add
+        <i class="fa fa-add fa-2x"></i>
+    </a>
+    <div class="row">
+        <div class="col-md-2">
+            <!-- Custom filters  -->
+            <h6 class="card-header bg-white">Filters</h6>
+            <ul class="list-group">
+                <li class="list-group-item btn-sm" >Technology</li>
+                <li class="list-group-item" >Masonry</li>
+                <li class="list-group-item" >Interior Design</li>
+                <li class="list-group-item" >Database</li>
+                <li class="list-group-item" >Welding and Fabrication</li>
+                <li class="list-group-item" >Networking</li>
+                <li class="list-group-item" >Tutors</li>
+            </ul>
+        </div>
+        <div class="col-md-8">
+            {% for project in projects %}
+            <!-- A card  -->
+            <div class="card mb-5">
+                <div class="card-header bg-success text-white">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <p>{{ project.title }}</p>
+                        <p>{{ project.created_by.username }} {{ project.timeframe }} days</p>
+                    </div>
+            
+                </div>
+                <div class="card-body">
+                    {{ project.truncate_description }}
+                    <a href="{% url 'project-detail' project.pk %}">More Info</a>
+                </div>
+            </div>
+            {% endfor %}
+
+            <div class="text-center">
+                {% include 'paginate.html' %}
+            </div>
+        </div>
+    </div>
+    
+   
+</div>
+    
 {% endblock %}

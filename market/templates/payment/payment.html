@@ -1,0 +1,21 @@
+{% extends '../index.html'%}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container d-flex flex-column justify-content-between vh-50">
+        <div class="row justify-content-center mt-5">
+            <div class="col-xl-5 col-lg-6 col-md-10">
+                <div class="card">
+                    <div class="card-header bg-primary">
+                    </div>
+                    <div class="car-body">
+                        <form action="" method="POST" class="form-horizontal ">
+                           {% csrf_token %}
+                                {{ form|crispy}}
+                            <input type="submit" value="Make Payment" class="btn btn-success mx-1 my-1">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

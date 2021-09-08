@@ -11,7 +11,7 @@ django-crispy-forms==1.8.1
 django-paypal==1.0.0
 idna==2.8
 lxml==4.4.2
-Pillow==5.4.1
+Pillow==8.3.2
 psycopg2==2.8.4
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
